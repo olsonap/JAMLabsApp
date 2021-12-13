@@ -39,12 +39,12 @@ from kivy.core.window import Window
 from kivy.app import async_runTouchApp
 # Window.size = (330, 600)
 
-# username = 12157728808
-#  = 12157728808
+# username = 'insert username here
+# 
 # sys.argv[1]
 # scope = 'playlist-read-private user-read-playback-state user-modify-playback-state'
-# SPOTIPY_CLIENT_ID = 'ce13cb4e2ea443628e94868808e03e11'
-# SPOTIPY_CLIENT_SECRET = '3f0e38638567473496e2a99311180a0d'
+# SPOTIPY_CLIENT_ID = 'insert client id here'
+# SPOTIPY_CLIENT_SECRET = "insert secret key here
 # SPOTIPY_REDIRECT_URI = 'http://localhost:8888/callback/'
 
 # Erase cache and prompt for user permission
@@ -52,8 +52,7 @@ from kivy.app import async_runTouchApp
 #    auth_manager = SpotifyOAuth(username=username, scope=scope, client_id=SPOTIPY_CLIENT_ID, client_secret
 #    =SPOTIPY_CLIENT_SECRET, redirect_uri=SPOTIPY_REDIRECT_URI)
 #    spotifyObject = spotipy.Spotify(auth_manager=auth_manager)
-#    #token = "BQDoAeQY9Si0QnVJMyhwlHLa7Xq2oq0P1B2v5NXXmQZlZXNcUH6RG30yCaplMOKKcbWgsvhR3oHNN22zp
-#    TOXFChdrm2VrPTnybxBc7Dg01Q2zgP4gE9GW2sxpPQDid77Y6QqFMRLfJM_iaglvGLSI6yJ5ZAZIGnNjZ3I5_s"
+#    #token = "insert token here"
 #    token = util.prompt_for_user_token(username, scope, SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI)
 #    print("Token is ", token)
 # except:
@@ -386,19 +385,19 @@ class MainWidget(Widget):
         return result
 
     def create_interface(self):
-        # username = 12157728808
-        username = 12157728808
+        # username = 'save username here
+        username = 'insert username here'
         # sys.argv[1]
         scope = 'playlist-read-private user-read-playback-state user-modify-playback-state'
-        SPOTIPY_CLIENT_ID = 'ce13cb4e2ea443628e94868808e03e11'
-        SPOTIPY_CLIENT_SECRET = '3f0e38638567473496e2a99311180a0d'
+        SPOTIPY_CLIENT_ID = 'insert client id here'
+        SPOTIPY_CLIENT_SECRET = 'insert client secret id here'
         SPOTIPY_REDIRECT_URI = 'http://localhost:8888/callback/'
 
         # Erase cache and prompt for user permission
         try:
             self.auth_manager = SpotifyOAuth(username=username, scope=scope, client_id=SPOTIPY_CLIENT_ID, client_secret=SPOTIPY_CLIENT_SECRET, redirect_uri=SPOTIPY_REDIRECT_URI)
             spotifyObject = spotipy.Spotify(auth_manager=auth_manager)
-            # token = "BQDoAeQY9Si0QnVJMyhwlHLa7Xq2oq0P1B2v5NXXmQZlZXNcUH6RG30yCaplMOKKcbWgsvhR3oHNN22zpTOXFChdrm2VrPTnybxBc7Dg01Q2zgP4gE9GW2sxpPQDid77Y6QqFMRLfJM_iaglvGLSI6yJ5ZAZIGnNjZ3I5_s"
+            # token = "insert token here"
             #token = util.prompt_for_user_token(username, scope, SPOTIPY_CLIENT_ID, SPOTIPY_CLIENT_SECRET, SPOTIPY_REDIRECT_URI)
             #print("Token")
         except:
