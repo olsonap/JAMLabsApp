@@ -1,0 +1,347 @@
+MainWidget:
+
+<MainWidget>:
+    BoxLayout:
+        padding: ("20dp","20dp","20dp","20dp")
+        size: root.size
+        pos: self.pos
+        orientation: "vertical"
+        #canvas.before:
+        #    Color:
+        #        rgba: 0,0,0,1
+        #    Rectangle:
+        #        size: self.size
+        #        pos: self.pos
+                #texture:
+                #    Gradient.vertical(
+                #    get_color_from_hex("000000"),
+                #    get_color_from_hex(root.trackColor2),
+                #    get_color_from_hex(root.trackColor1),
+                #    get_color_from_hex("000000")
+                #    )
+        BoxLayout:
+            size_hint: 1, None
+            height: root.height/14
+            orientation: "horizontal"
+            AnchorLayout:
+                anchor_x: 'left'
+                anchor_y: 'center'
+                size_hint: None, 1
+                width: root.height/8
+                #canvas:
+                #    Color:
+                #        rgb: 1, 0, 0
+                #    Rectangle:
+                #        size: self.size
+                #        pos: self.pos
+                Button:
+                    size: self.size
+                    pos: self.pos
+                    text: root.logout_text
+                    bold: True
+                    font_name: "fonts/Roboto-Bold.ttf"
+                    font_size: root.height/30
+                    bold: True
+                    color: 1, 1, 1, 1
+                    background_color: 0, 0, 0, 0
+                    # width: "50dp"
+            #Label:
+                #size_hint: 1, 1
+                #pos: self.pos
+                #text: "EMPTY"
+            AnchorLayout:
+                anchor_x: 'center'
+                anchor_y: 'center'
+                size_hint: 1, 1
+                Image:
+                    source: "images/JAMLabsGlitch.png"
+                    size_hint: 1, 1
+                    #height: root.height/14
+                    center_y: self.parent.center_y + 10
+            AnchorLayout:
+                anchor_x: 'right'
+                anchor_y: 'center'
+                size_hint: None, 1
+                width: root.height/10
+                BoxLayout:
+                    pos: self.pos
+                    size: self.size
+                    orientation: "horizontal"
+
+                    Label:
+                        size_hint: None, 1
+                        width: root.height/12
+                        pos: self.pos
+                        text_size: self.size
+                        valign: 'center'
+                        halign: 'right'
+                        font_size: root.height/30
+                        text: root.my_Battery
+                        color: 1, 1, 1, 1
+
+                    AsyncImage:
+                        size_hint: None, None
+                        pos_hint: { 'center_x': .5, 'center_y': .55 }
+                        height: root.height/23
+                        width: root.height/30
+                        source: root.PowerLevel
+                        allow_stretch: True
+                        keep_ratio: True
+
+            Label:
+                size_hint: None, 1
+                width: "12dp"
+
+        BoxLayout:
+            size_hint: 1, None
+            height: root.height/1.5
+            orientation: "vertical"
+            AsyncImage:
+                id: album_cover
+                size_hint: 1, 1
+                source: root.imageURL
+                allow_stretch: True
+                keep_ratio: True
+                padding: "5dp"
+            Label:
+                size_hint: 1, None
+                height: root.height/14
+                text_size: self.size
+                halign: "left"
+                text: root.songTitle
+                font_size: root.height/18
+                font_name: "fonts/Roboto-Bold.ttf"
+                bold: True
+                color: root.songColor
+            Label:
+                size_hint: 1, None
+                height: root.height/30
+                text_size: self.size
+                halign: "left"
+                text: root.songArtist
+                font_size: root.height/35
+                font_name: "fonts/Roboto-Bold.ttf"
+                bold: False
+                color: root.artistColor
+                #canvas.before:
+                #    Color:
+                #        rgba: self.background_color
+                #    Rectangle:
+                #        size: self.size
+                #        pos: self.pos
+            BoxLayout:
+                size_hint: 1, None
+                height: "45dp"
+                pos: self.pos
+                orientation: "vertical"
+                Slider:
+                    max: root.durationMS
+                    value: root.progressMS
+                    #on_touch_down: root.sliderTouched()
+                    on_touch_up: root.sliderChange(self.value)
+                    cursor_size: "20dp", "20dp"
+                    size_hint: 1, None
+                    padding: "0dp"
+                    height: "16dp"
+                BoxLayout:
+                    size_hint:1,1
+                    pos: self.pos
+                    Label:
+                        font_size: "15sp"
+                        size_hint: 1,1
+                        halign: "left"
+                        text_size: self.size
+                        font_name: "fonts/Roboto-Regular.ttf"
+                        text: root.sliderProgress
+                    Label:
+                        font_size: "15sp"
+                        size_hint: 1,1
+                        halign: "right"
+                        text_size: self.size
+                        font_name: "fonts/Roboto-Regular.ttf"
+                        text: root.sliderMax
+
+    ### PREVIOUS PLAY/PAUSE NEXT
+        BoxLayout:
+            orientation: "horizontal"
+            size_hint: None, None
+            height: root.height/10
+            ### 4.12 is (1/14) + (1/14) + (1/10)
+            width: root.height/4.12 + root.width/10
+            pos_hint: { 'center_x': .5, 'center_y': .5}
+            #canvas:
+            #    Color:
+            #        rgb: 1, 0, 0
+            #    Rectangle:
+            #        size: self.size
+            #        pos: self.pos
+            #PREVIOUS
+            Button:
+                pos: self.pos
+                size_hint: None, 1
+                width: root.height/14
+                on_press: root.previous_track()
+                background_color: 0, 0, 0, 0
+                Image:
+                    opacity: root.opacityPrevious
+                    source: "images/previous.png"
+                    background_color: 0, 0, 0, 0
+                    size_hint: None, None
+                    height: root.height/14
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+            Label:
+                size_hint: None, None
+                width: root.width/20
+            # PLAY
+            Button:
+                size_hint: None, 1
+                ### root.height seems odd but keeps the height and width of the play button the same
+                width: root.height/10
+                on_press: root.play_pause()
+                background_color: 0, 0, 0, 0
+                Image:
+                    opacity: root.opacityPlay
+                    source: "images/play.png"
+                    background_color: 0, 0, 0, 0
+                    size_hint: None, None
+                    height: root.height/10
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+            Label:
+                size_hint: None, 1
+                width: root.width/20
+            # NEXT
+            Button:
+                size_hint: None, 1
+                width: root.height/14
+                on_press: root.next_track()
+                background_color: 0, 0, 0, 0
+                Image:
+                    opacity: root.opacityNext
+                    source: "images/next.png"
+                    background_color: 0, 0, 0, 0
+                    size_hint: None, None
+                    height: root.height/14
+                    center_x: self.parent.center_x
+                    center_y: self.parent.center_y
+
+
+    ### HR AND BP
+        BoxLayout:
+            size_hint: None, None
+            height: root.height/13
+            width: root.height/2.5 + root.width/20
+            pos_hint: { 'center_x': .5, 'center_y': .5 }
+            #canvas.before:
+            #    Color:
+            #        rgb: 1, 0, 0
+            #    Rectangle:
+            #        size: self.size
+            #        pos: self.pos
+
+            Button:
+                size_hint: None, 1
+                width: root.height/5
+                pos_hint: { 'left': 0, 'center_y': .4 }
+                height: root.height/15
+                background_color: 1, 1, 1, 0
+                BoxLayout:
+                    size: self.parent.size
+                    pos: self.parent.pos
+                    Image:
+                        pos_hint: { 'left': 0, 'center_y': .5 }
+                        source: "images/heart.png"
+                        background_color: 0,0,0,0
+                        size_hint: None, None
+                        height: self.parent.height
+                        width: self.parent.height
+                        keep_ratio: True
+                    Label:
+                        pos_hint: { 'right': 0, 'center_y': .5 }
+                        text: root.HRtext
+                        size_hint: None, 1
+                        width: self.parent.height*1.6
+                        font_size: root.height/30
+                        color: 1, 1, 1, 1
+                        font_name: "fonts/Roboto-Regular.ttf"
+            Label:
+                size_hint: None, 1
+                width: root.width/20
+            Button:
+                size_hint: None, 1
+                width: root.height/5
+                pos_hint: { 'right': 0, 'center_y': .4 }
+                height: root.height/15
+                background_color: 1, 1, 1, 0
+                BoxLayout:
+                    size: self.parent.size
+                    pos: self.parent.pos
+                    Image:
+                        id: bp
+                        source: "images/BP.png"
+                        background_color: 0,0,0,0
+                        size_hint: None, None
+                        height: self.parent.height
+                        width: self.parent.height
+                        keep_ratio: True
+                    Label:
+                        pos_hint: { 'right': 0, 'center_y': .5 }
+                        text: root.BPtext
+                        size_hint: None, 1
+                        width: self.parent.height*1.6
+                        font_size: root.height/30
+                        color: 1, 1, 1, 1
+                        font_name: "fonts/Roboto-Regular.ttf"
+
+        Label:
+            size_hint: 1, 0
+            height: root.height/20
+            font_size: root.height/50
+            halign: "center"
+            valign: "bottom"
+            text: "Current Device: " + root.my_text
+            #canvas.before:
+            #    Color:
+            #        rgb: 1,0,0
+            #    Rectangle:
+            #        pos: self.pos
+            #        size: self.size
+
+
+<MainWidget1>:
+    #BoxLayout:
+    #    orientation: "vertical"
+    #    BoxLayout:
+    #        orientation: "horizontal"
+    #        Logout
+    #        Battery Life
+    #    BoxLayout:
+    #        orientation: "horizontal"
+    #        Heart Rate
+    #        Blood Pressure
+    #    Image:
+    #        Albumart
+    #    Label:
+    #        Song
+    #    Label:
+    #        Artist
+    #    BoxLayout:
+    #        Progress Value
+    #        ProgressBar:
+    #        Duration
+    #    BoxLayout:
+    #        orientation: "horizontal"
+    #        Previous Track
+    #        Play/Pause
+    #        Next Track
+    #    BoxLayout:
+    #        orientation: "vertical"
+    #        Label:
+    #            Connect Services
+    #        BoxLayout:
+    #            orientation: "horizontal"
+    #            Spotify
+    #            Apple
+    #            Pandora
